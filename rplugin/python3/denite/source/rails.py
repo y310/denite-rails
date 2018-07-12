@@ -21,6 +21,7 @@ from helper_finder import HelperFinder # noqa
 from view_finder import ViewFinder # noqa
 from test_finder import TestFinder # noqa
 from spec_finder import SpecFinder # noqa
+from config_finder import ConfigFinder # noqa
 
 
 class Source(Base):
@@ -60,6 +61,8 @@ class Source(Base):
         self.vim.command('highlight link deniteSource_railsTest Number')
         self.vim.command('syntax match deniteSource_railsSpec /Spec:/')
         self.vim.command('highlight link deniteSource_railsSpec Number')
+        self.vim.command('syntax match deniteSource_railsConfig /Config:/')
+        self.vim.command('highlight link deniteSource_railsConfig Statement')
 
     def gather_candidates(self, context):
         file_list = self._find_files(context)
@@ -85,6 +88,8 @@ class Source(Base):
             finder_class = TestFinder
         elif target == 'spec':
             finder_class = SpecFinder
+        elif target == 'config':
+            finder_class = ConfigFinder
         else:
             msg = '{0} is not valid denite-rails target'.format(target)
             raise NameError(msg)
