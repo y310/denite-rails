@@ -103,7 +103,7 @@ class Source(Base):
 
     def _convert(self, context, file_object):
         result_dict = {
-            'word': file_object.to_word(context['__root_path']),
+            'word': file_object.to_filename(context['__root_path']),
             'action__path': file_object.filepath
         }
 
