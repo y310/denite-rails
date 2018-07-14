@@ -15,16 +15,7 @@ site.addsitedir(os.path.join(path_to_modules, 'finders'))
 site.addsitedir(os.path.join(path_to_modules, 'models'))
 
 from dwim_finder import DwimFinder # noqa
-from model_finder import ModelFinder # noqa
-from controller_finder import ControllerFinder # noqa
-from helper_finder import HelperFinder # noqa
-from view_finder import ViewFinder # noqa
-from test_finder import TestFinder # noqa
-from spec_finder import SpecFinder # noqa
-from config_finder import ConfigFinder # noqa
-from lib_finder import LibFinder # noqa
 from general_finder import GeneralFinder # noqa
-
 
 class Source(Base):
 
@@ -38,6 +29,8 @@ class Source(Base):
         'config': { 'path': 'config', 'extension': 'rb' },
         'lib': { 'path': 'lib', 'extension': 'rb' },
         'graphql': { 'path': 'app/graphql', 'extension': 'rb' },
+        'javascript': { 'path': 'app/javascript', 'extension': 'js*' },
+        'service': { 'path': 'app/services', 'extension': 'rb' },
     }
 
     def __init__(self, vim):
