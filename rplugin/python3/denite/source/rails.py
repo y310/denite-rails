@@ -23,9 +23,22 @@ from test_finder import TestFinder # noqa
 from spec_finder import SpecFinder # noqa
 from config_finder import ConfigFinder # noqa
 from lib_finder import LibFinder # noqa
+from general_finder import GeneralFinder # noqa
 
 
 class Source(Base):
+
+    GLOB_ROOT_PATHS = {
+        'model': { 'path': 'app/models', 'extension': 'rb' },
+        'controller': { 'path': 'app/controllers', 'extension': 'rb' },
+        'helper': { 'path': 'app/helpers', 'extension': 'rb' },
+        'view': { 'path': 'app/views', 'extension': 'html*' },
+        'test': { 'path': 'test', 'extension': 'rb' },
+        'spec': { 'path': 'spec', 'extension': 'rb' },
+        'config': { 'path': 'config', 'extension': 'rb' },
+        'lib': { 'path': 'lib', 'extension': 'rb' },
+        'graphql': { 'path': 'app/graphql', 'extension': 'rb' },
+    }
 
     def __init__(self, vim):
         super().__init__(vim)
@@ -79,27 +92,13 @@ class Source(Base):
 
         if target == 'dwim':
             finder_class = DwimFinder
-        elif target == 'model':
-            finder_class = ModelFinder
-        elif target == 'controller':
-            finder_class = ControllerFinder
-        elif target == 'helper':
-            finder_class = HelperFinder
-        elif target == 'view':
-            finder_class = ViewFinder
-        elif target == 'test':
-            finder_class = TestFinder
-        elif target == 'spec':
-            finder_class = SpecFinder
-        elif target == 'config':
-            finder_class = ConfigFinder
-        elif target == 'lib':
-            finder_class = LibFinder
+            return DwimFinder(context).find_files()
+        elif self.GLOB_ROOT_PATHS[target]:
+            glob_root_path = self.GLOB_ROOT_PATHS[target]
+            return GeneralFinder(context).find_files(glob_root_path['path'], glob_root_path['extension'])
         else:
             msg = '{0} is not valid denite-rails target'.format(target)
             raise NameError(msg)
-
-        return finder_class(context).find_files()
 
     def _convert(self, context, file_object):
         result_dict = {
