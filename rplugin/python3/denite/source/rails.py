@@ -26,7 +26,7 @@ class Source(Base):
         'view': { 'path': 'app/views', 'extension': 'html*' },
         'test': { 'path': 'test', 'extension': 'rb' },
         'spec': { 'path': 'spec', 'extension': 'rb' },
-        'config': { 'path': 'config', 'extension': 'rb' },
+        'config': { 'path': 'config', 'extension': '*' },
         'lib': { 'path': 'lib', 'extension': 'rb' },
         'graphql': { 'path': 'app/graphql', 'extension': 'rb' },
         'javascript': { 'path': 'app/javascript', 'extension': 'js*' },
