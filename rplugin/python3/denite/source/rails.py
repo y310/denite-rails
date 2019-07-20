@@ -20,17 +20,20 @@ from general_finder import GeneralFinder # noqa
 class Source(Base):
 
     GLOB_ROOT_PATHS = {
-        'model': { 'path': 'app/models', 'extension': 'rb' },
-        'controller': { 'path': 'app/controllers', 'extension': 'rb' },
-        'helper': { 'path': 'app/helpers', 'extension': 'rb' },
-        'view': { 'path': 'app/views', 'extension': 'html*' },
-        'test': { 'path': 'test', 'extension': 'rb' },
-        'spec': { 'path': 'spec', 'extension': 'rb' },
+        'model': { 'path': 'app/models', 'extension': '*' },
+        'controller': { 'path': 'app/controllers', 'extension': '*' },
+        'helper': { 'path': 'app/helpers', 'extension': '*' },
+        'view': { 'path': 'app/views', 'extension': '*' },
+        'test': { 'path': 'test', 'extension': '*' },
+        'spec': { 'path': 'spec', 'extension': '*' },
         'config': { 'path': 'config', 'extension': '*' },
-        'lib': { 'path': 'lib', 'extension': 'rb' },
-        'graphql': { 'path': 'app/graphql', 'extension': 'rb' },
-        'javascript': { 'path': 'app/javascript', 'extension': 'js*' },
-        'service': { 'path': 'app/services', 'extension': 'rb' },
+        'lib': { 'path': 'lib', 'extension': '*' },
+        'graphql': { 'path': 'app/graphql', 'extension': '*' },
+        'javascript': { 'path': 'app/javascript', 'extension': '*' },
+        'service': { 'path': 'app/services', 'extension': '*' },
+        'decorator': { 'path': 'app/decorators', 'extension': '*' },
+        'mailer': { 'path': 'app/mailers', 'extension': '*' },
+        'job': { 'path': 'app/jobs', 'extension': '*' },
     }
 
     def __init__(self, vim):
